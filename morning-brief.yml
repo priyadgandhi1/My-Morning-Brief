@@ -1,0 +1,31 @@
+name: Morning Brief
+
+on:
+  schedule:
+    # Times are in UTC. 11:00 UTC = 7:00am US Eastern (during daylight time).
+    # Adjust the "11" if you want a different hour. See note in the chat.
+    - cron: "0 11 * * *"
+  # Lets you run it manually from the GitHub Actions tab to test.
+  workflow_dispatch:
+
+jobs:
+  send-brief:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run the morning brief
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python brief.py
