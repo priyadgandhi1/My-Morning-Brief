@@ -1,6 +1,5 @@
 """
-Morning Brief: fetches news from RSS feeds, has Claude organize it into
-a categorized briefing, and sends it to you on Telegram.
+Morning Brief: fetches news from RSS feeds, has Claude organize it into a categorized briefing, and sends it to you on Telegram.
 
 Reads three secrets from environment variables (set in GitHub):
   ANTHROPIC_API_KEY
