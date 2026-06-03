@@ -2,7 +2,6 @@ name: Morning Brief
 
 on:
   schedule:
-    # Times are in UTC. 11:00 UTC = 7:00am ET.
     - cron: "0 11 * * *"
   workflow_dispatch:
 
