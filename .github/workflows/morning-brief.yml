@@ -1,8 +1,11 @@
 name: Morning Brief
 
+# This workflow is triggered on a fixed schedule by an external scheduler that
+# calls the workflow_dispatch API (see docs/RELIABLE_TRIGGER.md). We do not use
+# GitHub's `schedule:` cron here on purpose: scheduled runs are best-effort and
+# get queued behind heavy load, so the brief would arrive hours late and at a
+# different time every day. An external trigger fires at the same minute daily.
 on:
-  schedule:
-    - cron: "0 11 * * *"
   workflow_dispatch:
 
 jobs:
